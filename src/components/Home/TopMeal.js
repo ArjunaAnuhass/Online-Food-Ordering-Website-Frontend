@@ -1,0 +1,30 @@
+export const TopMeal=[
+    {
+        image:"https://images.pexels.com/photos/825661/pexels-photo-825661.jpeg?auto=compress&cs=tinysrgb&w=800",
+        title:"Pizza"
+    },
+    {
+        image:"https://images.pexels.com/photos/1199957/pexels-photo-1199957.jpeg?auto=compress&cs=tinysrgb&w=800",
+        title:"Burger"
+    },
+    {
+        image:"https://images.pexels.com/photos/1603901/pexels-photo-1603901.jpeg?auto=compress&cs=tinysrgb&w=800",
+        title:"Submarine"
+    },
+    {
+        image:"https://images.pexels.com/photos/1647163/pexels-photo-1647163.jpeg?auto=compress&cs=tinysrgb&w=800",
+        title:"Sandwich"
+    },
+    {
+        image:"https://images.pexels.com/photos/6260921/pexels-photo-6260921.jpeg?auto=compress&cs=tinysrgb&w=800",
+        title:"Biriyani"
+    },
+    {
+        image:"https://images.pexels.com/photos/2664216/pexels-photo-2664216.jpeg?auto=compress&cs=tinysrgb&w=800",
+        title:"Noodles"
+    },
+    {
+        image:"https://media.istockphoto.com/id/1786987960/photo/kottu-or-kottu-roti-a-popular-sri-lankan-street-food.jpg?b=1&s=612x612&w=0&k=20&c=uTM1-hfEaNItNdzsqB2QZZYSBeZb6TZc72SuoB4IDYo=",
+        title:"Kottu"
+    }
+]
