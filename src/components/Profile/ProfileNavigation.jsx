@@ -1,4 +1,4 @@
-import { Divider, Drawer, Icon, useMediaQuery } from '@mui/material'
+import { Divider, Drawer, useMediaQuery } from '@mui/material'
 import React from 'react'
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import FavoriteIcon from '@mui/icons-material/Favorite';
