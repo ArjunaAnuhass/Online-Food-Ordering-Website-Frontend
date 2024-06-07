@@ -6,7 +6,9 @@ import { useNavigate } from 'react-router-dom'
 export const LoginForm = () => {
 
     const initialValues = {email:"", password:""}
-    const handleSubmit = () => {}
+    const handleSubmit = (values) => {
+        console.log("values of login", values)
+    }
     const navigate = useNavigate();
 
   return (
@@ -31,7 +33,8 @@ export const LoginForm = () => {
                         label="password]"
                         fullWidth
                         variant="outlined"
-                        margin="normal"/>
+                        margin="normal"
+                        type="password"/>
 
                 <Button fullWidth type='submit' variant='contained' sx={{mt:3, padding:"1rem"}}>Login</Button>
             </Form>
