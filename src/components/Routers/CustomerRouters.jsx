@@ -1,10 +1,11 @@
 import React from 'react'
 import { Navbar } from '../Navbar/Navbar'
 import { Route, Routes } from 'react-router-dom'
-import { Home } from '@mui/icons-material'
+import { Home } from '../Home/Home'
 import RestaurantDetails from '../Restaurant/RestaurantDetails'
 import Cart from '../Cart/Cart'
 import Profile from '../Profile/Profile'
+import { Auth } from '../Auth/Auth'
 
 export const CustomerRouters = () => {
   return (
@@ -18,6 +19,7 @@ export const CustomerRouters = () => {
             <Route path='/my-profile/*' element={<Profile/>}/>
 
         </Routes>
+        <Auth/>
     </div>
   )
 }
