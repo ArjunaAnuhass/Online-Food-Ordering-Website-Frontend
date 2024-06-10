@@ -39,7 +39,7 @@ export const authReducer = (state = initialState, action) => {
                                                     return {...state, isLoading:false, error:action.payload, success:null}
 
                                                     case GET_USER_SUCCESS:
-                                                        return {...state, isLoading:false, user:action.payload}
+                                                        return {...state, isLoading:false, user:action.payload, favorites: action.payload.favorites}
 
                                                         case LOGOUT:
                                                             return initialState;
