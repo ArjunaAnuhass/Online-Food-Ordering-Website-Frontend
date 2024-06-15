@@ -1,5 +1,5 @@
 import { api } from "../../Config/Api";
-import { CREATE_RESTAURANT_FAILURE, CREATE_RESTAURANT_REQUEST, CREATE_RESTAURANT_SUCCESS, DELETE_RESTAURANT_FAILURE, DELETE_RESTAURANT_REQUEST, DELETE_RESTAURANT_SUCCESS, GET_ALL_RESTAURANT_FAILURE, GET_ALL_RESTAURANT_REQUEST, GET_ALL_RESTAURANT_SUCCESS, GET_RESTAURANT_BY_ID_FAILURE, GET_RESTAURANT_BY_ID_REQUEST, GET_RESTAURANT_BY_ID_SUCCESS, GET_RESTAURANT_BY_USER_ID_FAILURE, GET_RESTAURANT_BY_USER_ID_REQUEST, GET_RESTAURANT_BY_USER_ID_SUCCESS, UPDATE_RESTAURANT_FAILURE, UPDATE_RESTAURANT_REQUEST, UPDATE_RESTAURANT_SUCCESS } from "./ActionType"
+import { CREATE_RESTAURANT_FAILURE, CREATE_RESTAURANT_REQUEST, CREATE_RESTAURANT_SUCCESS, DELETE_RESTAURANT_FAILURE, DELETE_RESTAURANT_REQUEST, DELETE_RESTAURANT_SUCCESS, GET_ALL_RESTAURANT_FAILURE, GET_ALL_RESTAURANT_REQUEST, GET_ALL_RESTAURANT_SUCCESS, GET_RESTAURANT_BY_ID_FAILURE, GET_RESTAURANT_BY_ID_REQUEST, GET_RESTAURANT_BY_ID_SUCCESS, GET_RESTAURANT_BY_USER_ID_FAILURE, GET_RESTAURANT_BY_USER_ID_REQUEST, GET_RESTAURANT_BY_USER_ID_SUCCESS, GET_RESTAURANT_CATEGORY_FAILURE, GET_RESTAURANT_CATEGORY_REQUEST, GET_RESTAURANT_CATEGORY_SUCCESS, UPDATE_RESTAURANT_FAILURE, UPDATE_RESTAURANT_REQUEST, UPDATE_RESTAURANT_SUCCESS } from "./ActionType"
 
 
 //get all restaurant
@@ -146,4 +146,24 @@ export const deleteRestaurant = (restaurantId, jwt) => {
 
 //create category
 
-//get restaurant
+//get restaurant category
+
+export const getRestaurantCategory = ({jwt, restaurantId}) => {
+    return async (dispatch) => {
+        dispatch({type:GET_RESTAURANT_CATEGORY_REQUEST});
+
+        try{
+            const response = await api.get(`/api/category/restaurant/${restaurantId}`, {
+                headers: {
+                    Authorization: `Bearer ${jwt}`,
+                }
+            })
+            dispatch({type:GET_RESTAURANT_CATEGORY_SUCCESS, payload:response.data});
+            console.log("get category success", response.data);
+        }
+        catch(error){
+            dispatch({type:GET_RESTAURANT_CATEGORY_FAILURE, payload:error});
+            console.log("get category error", error);
+        }
+    }
+}

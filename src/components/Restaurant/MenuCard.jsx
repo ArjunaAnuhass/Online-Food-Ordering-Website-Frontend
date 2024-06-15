@@ -1,6 +1,7 @@
 import { Accordion, AccordionDetails, AccordionSummary, Button, Checkbox, FormControlLabel, FormGroup } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import React from 'react'
+import { categorizeIngredients } from '../Util/CategorizeIngredients';
 
 const demo=[
     {
@@ -14,14 +15,13 @@ const demo=[
 
 ]
 
-function MenuCard() {
+const MenuCard = ({item}) => {
 
     const handleCheckBoxChange=(value)=>{
         console.log("value")
     }
 
   return (
-    <div>
         <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -30,11 +30,11 @@ function MenuCard() {
         >
           <div className='lg:flex items-center justify-between'>
             <div className='lg:flex items-center lg:gap-5'>
-                <img className='w-[7rem] h-[7rem] object-cover' src='https://images.pexels.com/photos/1552635/pexels-photo-1552635.jpeg?auto=compress&cs=tinysrgb&w=600' alt=''/>
+                <img className='w-[7rem] h-[7rem] object-cover' src={item.images[0]} alt=''/>
                 <div className='space-y-1 lg:space-y-5 lg:max-w-2xl'>
-                    <p className='font-semibold text-xl'>Pizza</p>
-                    <p>රු.2000</p>
-                    <p className='text-gray-400'>Nice Food</p>
+                    <p className='font-semibold text-xl'>{item.name}</p>
+                    <p>රු.{item.price}</p>
+                    <p className='text-gray-400'>{item.description}</p>
                 </div>
             </div>
           </div>
@@ -43,11 +43,11 @@ function MenuCard() {
             <form>
                 <div className='flex gap-5 flex-wrap'>
                     {
-                        demo.map((item)=> 
+                        Object.keys(categorizeIngredients(item.ingredients)).map((category)=> 
                             <div>
-                                <p>{item.category}</p>
+                                <p>{category}</p>
                                 <FormGroup>
-                        {item.ingredients.map((item)=> <FormControlLabel control={<Checkbox onChange={()=>handleCheckBoxChange(item)}/>} label={item} />)}
+                        {categorizeIngredients(item.ingredients)[category].map((item)=> <FormControlLabel key={item.name} control={<Checkbox onChange={()=>handleCheckBoxChange(item)}/>} label={item.name} />)}
                         
                       </FormGroup>
                             </div>
@@ -60,8 +60,7 @@ function MenuCard() {
             </form>
         </AccordionDetails>
       </Accordion>
-    </div>
   )
 }
 
-export default MenuCard
+export default MenuCard;
