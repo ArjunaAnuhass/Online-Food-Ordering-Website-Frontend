@@ -31,6 +31,7 @@ const RestaurantDetails = () => {
 
 
     const handleFilter=(e)=>{
+        // setFoodType(e.target.value)
         console.log(e.target.value,e.target.name);
     }
 
@@ -53,13 +54,13 @@ const RestaurantDetails = () => {
             getMenuItemByRestaurantId({
                 jwt,
                 restaurantId:id,
-                vegetarian:false,
-                nonVeg:false,
-                seasonal:false,
+                vegetarian:foodType==="vegetarian",
+                nonVeg:foodType==="non-vegetarian",
+                seasonal:foodType==="seasonal",
                 foodCategory:selectedCategory
             })
         );
-    }, [selectedCategory])
+    }, [selectedCategory, foodType])
 
   return (
     <div className="px-5 lg:px-20">
@@ -112,7 +113,7 @@ const RestaurantDetails = () => {
 
                         <FormControl className="py-10 space-y-5" component={"fieldset"}>
                             <RadioGroup onChange={handleFilter} name="food_type" value={foodTypes}>
-                                {foodType.map((item)=> (<FormControlLabel key={item} value={item} control={<Radio />} label={item.name} />))}
+                                {foodType.map((item)=> (<FormControlLabel key={item} value={item.value} control={<Radio />} label={item.label} />))}
                             </RadioGroup>
                         </FormControl>
                     </div>
@@ -123,7 +124,7 @@ const RestaurantDetails = () => {
                         </Typography>
 
                         <FormControl className="py-10 space-y-5" component={"fieldset"}>
-                            <RadioGroup onChange={handleFilterCategory} name="food_category">
+                            <RadioGroup onChange={handleFilterCategory} name="food_category" value={selectedCategory}>
                                 {restaurant.categories.map((item)=> (<FormControlLabel key={item} value={item.name} control={<Radio/>} label={item.name} />))}
                             </RadioGroup>
                         </FormControl>
