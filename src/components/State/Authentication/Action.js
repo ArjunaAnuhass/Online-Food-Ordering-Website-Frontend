@@ -29,24 +29,26 @@ export const registerUser = (reqData) => async(dispatch) => {
 
 //login user
 
-export const loginUser = (reqData) => async (dispatch) => {
-    dispatch({type:LOGIN_REQUEST})
+export const loginUser = (reqData) => {
+    return async (dispatch) => {
+        dispatch({type:LOGIN_REQUEST});
 
-    try{
-        const {data} = await axios.post(`${API_URL}/auth/singing`, reqData.userData);
-        if(data.jwt)localStorage.setItem("jwt", data.jwt);
-        if(data.role === "ROLE_RESTAURANT_OWNER"){
-            reqData.navigate("/admin/restaurant")
+        try{
+            const {data} = await axios.post(`${API_URL}/auth/singing`, reqData.userData);
+            if(data.jwt)localStorage.setItem("jwt", data.jwt);
+            if(data.role === "ROLE_RESTAURANT_OWNER"){
+                reqData.navigate("/admin/restaurant")
+            }
+            else{
+                reqData.navigate("/")
+            }
+            dispatch({type:LOGIN_SUCCESS, payload:data.jwt});
+            console.log("Login success", data)
         }
-        else{
-            reqData.navigate("/")
+        catch(error){
+            dispatch({type:LOGIN_FAILURE, payload:error})
+            console.log("error to signing", error)
         }
-        dispatch({type:LOGIN_SUCCESS, payload:data.jwt})
-        console.log("Login success", data)
-    }
-    catch(error){
-        dispatch({type:LOGIN_FAILURE, payload:error})
-        console.log("error to signing", error)
     }
 }
 
@@ -74,21 +76,23 @@ export const getUser = (jwt) => async (dispatch) => {
 
 // add to favorite
 
-export const addToFavorite = ({jwt, restaurantId}) => async (dispatch) => {
-    dispatch({type:ADD_TO_FAVORITE_REQUEST})
+export const addToFavorite = ({jwt, restaurantId}) => {
+    return async (dispatch) => {
+        dispatch({type:ADD_TO_FAVORITE_REQUEST});
 
-    try{
-        const {data} = await api.put(`api/restaurants/${restaurantId}/add-favorite`, {}, {
-            headers:{
-                Authorization:`Bearer ${jwt}`
-            }
-        })
-        dispatch({type:ADD_TO_FAVORITE_SUCCESS, payload:data})
-        console.log("add to favorite success")
-    }
-    catch(error){
-        dispatch({type:ADD_TO_FAVORITE_FAILURE, payload:error})
-        console.log("error to add to favorite", error)
+        try{
+            const {data} = await api.put(`api/restaurants/${restaurantId}/add-favorite`, {}, {
+                headers:{
+                    Authorization:`Bearer ${jwt}`
+                }
+            })
+            dispatch({type:ADD_TO_FAVORITE_SUCCESS, payload:data})
+            console.log("add to favorite success")
+        }
+        catch(error){
+            dispatch({type:ADD_TO_FAVORITE_FAILURE, payload:error})
+            console.log("error to add to favorite", error)
+        }
     }
 }
 
