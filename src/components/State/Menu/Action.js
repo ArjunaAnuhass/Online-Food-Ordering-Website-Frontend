@@ -28,7 +28,7 @@ export const getMenuItemByRestaurantId = ({restaurantId, vegetarian, nonVeg, sea
         dispatch({type:GET_MENU_ITEMS_BY_RESTAURANT_ID_REQUEST});
 
         try{
-            const {data} = await api.get(`/api/food/restaurant/${restaurantId}?vegetarian=${vegetarian}&nonVeg${nonVeg}&seasonal${seasonal}&food_category${foodCategory}`,
+            const {data} = await api.get(`/api/food/restaurant/${restaurantId}?vegetarian=${vegetarian}&nonVeg=${nonVeg}&seasonal=${seasonal}&food_category=${foodCategory}`,
             {
                 headers: {
                     Authorization: `Bearer ${jwt}`,
