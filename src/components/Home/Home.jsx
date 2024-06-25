@@ -5,8 +5,9 @@ import RestaurantCart from '../Restaurant/RestaurantCart'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllRestaurantsAction } from '../State/Restaurant/Action'
 import { useNavigate } from 'react-router-dom'
+import { findUserCart } from '../State/Cart/Action'
 
-const restaurants=[1,1,1,1,1,1,1,1,1]
+// const restaurants=[1,1,1,1,1,1,1,1,1]
 
 export const Home = () => {
 
@@ -20,7 +21,7 @@ export const Home = () => {
 
     useEffect(() => {
         dispatch(getAllRestaurantsAction(jwt))
-    }, []);
+    }, [jwt]);
 
 
   return (
