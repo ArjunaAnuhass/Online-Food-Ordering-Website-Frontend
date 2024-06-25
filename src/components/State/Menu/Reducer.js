@@ -34,8 +34,8 @@ const menuItemReducer = (state = initialState, action) => {
         case GET_MENU_ITEMS_BY_RESTAURANT_ID_SUCCESS:
             return {
                 ...state,
-                loading: false,
-                menuItems: action.payload
+                loading: true,
+                menuItems: action.payload,
             };
 
         case DELETE_MENU_ITEM_SUCCESS:
