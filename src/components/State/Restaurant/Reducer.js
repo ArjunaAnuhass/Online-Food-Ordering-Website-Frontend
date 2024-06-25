@@ -38,14 +38,14 @@ export const restaurantReducer = (state = initialState, action) => {
         case GET_ALL_RESTAURANT_SUCCESS:
             return {
                 ...state,
-                loading: false,
+                loading: true,
                 restaurants: action.payload,
             };
 
         case GET_RESTAURANT_BY_ID_SUCCESS:
             return {
                 ...state,
-                loading: false,
+                loading: true,
                 restaurant: action.payload,
                 restaurants: action.payload,
             };
@@ -55,7 +55,7 @@ export const restaurantReducer = (state = initialState, action) => {
                 case UPDATE_RESTAURANT_SUCCESS:
                     return {
                         ...state,
-                        loading: false,
+                        loading: true,
                         userRestaurant: action.payload,
                     };
 
@@ -90,13 +90,12 @@ export const restaurantReducer = (state = initialState, action) => {
         //create category success case 
 
         //get restaurant category success case
-
         case GET_RESTAURANT_CATEGORY_SUCCESS:
             return {
                 ...state,
-                loading: false,
+                loading: true,
                 categories: action.payload,
-            }
+            };
 
         case CREATE_RESTAURANT_FAILURE:
             case GET_ALL_RESTAURANT_FAILURE:
