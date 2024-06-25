@@ -2,7 +2,7 @@ import { api } from "../../Config/Api";
 import { ADD_ITEM_TO_CART_FAILURE, ADD_ITEM_TO_CART_REQUEST, ADD_ITEM_TO_CART_SUCCESS, CLEAR_CART_FAILURE, CLEAR_CART_REQUEST, CLEAR_CART_SUCCESS, FIND_CART_FAILURE, FIND_CART_REQUEST, FIND_CART_SUCCESS, REMOVE_CART_ITEM_FAILURE, REMOVE_CART_ITEM_REQUEST, REMOVE_CART_ITEM_SUCCESS, UPDATE_CART_ITEM_FAILURE, UPDATE_CART_ITEM_REQUEST, UPDATE_CART_ITEM_SUCCESS } from "./ActionType"
 
 //find cart by user 
-export const findUserCart = ({jwt}) => {
+export const findUserCart = (jwt) => {
     return async (dispatch) => {
         dispatch({type:FIND_CART_REQUEST});
 
@@ -16,28 +16,28 @@ export const findUserCart = ({jwt}) => {
             console.log("user cart found successfully", data);
         }
         catch(error){
-            dispatch({type:FIND_CART_FAILURE, payload:error});
+            dispatch({type:FIND_CART_FAILURE, payload:error.message});
             console.log("error to find the user cart");
         }
     }
 }
 
 //add item to cart
-export const addItemToCart = ({reqData}) => {
+export const addItemToCart = (reqData, jwt) => {
     return async (dispatch) => {
         dispatch({type:ADD_ITEM_TO_CART_REQUEST});
 
         try{
             const {data} = await api.put(`/api/cart/add`, reqData.cartItem, {
                 headers: {
-                    Authorization: `Bearer ${reqData.jwt}`,
+                    Authorization: `Bearer ${reqData.token}`,
                 },
             });
             dispatch({type:ADD_ITEM_TO_CART_SUCCESS, payload:data});
             console.log("item added successfully to the cart", data);
         }
         catch(error){
-            dispatch({type:ADD_ITEM_TO_CART_FAILURE, payload:error});
+            dispatch({type:ADD_ITEM_TO_CART_FAILURE, payload:error.message});
             console.log("error to add items to cart", error);
         }
     }
