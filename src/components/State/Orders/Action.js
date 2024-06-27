@@ -3,7 +3,7 @@ import { CREATE_ORDER_FAILURE, CREATE_ORDER_REQUEST, CREATE_ORDER_SUCCESS, GET_U
 
 
 //create order
-export const createOrder = ({reqData}) => {
+export const createOrder = (reqData) => {
     return async (dispatch) => {
         dispatch({type:CREATE_ORDER_REQUEST});
 
@@ -24,7 +24,7 @@ export const createOrder = ({reqData}) => {
 };
 
 //get users order
-export const getUsersOrder = ({jwt}) => {
+export const getUsersOrder = (jwt) => {
     return async (dispatch) => {
         dispatch({type:GET_USERS_ORDERS_REQUEST});
 

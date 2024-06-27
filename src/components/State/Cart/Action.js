@@ -23,7 +23,7 @@ export const findUserCart = (jwt) => {
 }
 
 //add item to cart
-export const addItemToCart = (reqData, jwt) => {
+export const addItemToCart = (reqData) => {
     return async (dispatch) => {
         dispatch({type:ADD_ITEM_TO_CART_REQUEST});
 
@@ -44,7 +44,7 @@ export const addItemToCart = (reqData, jwt) => {
 }
 
 //update cart item
-export const updateCartItem = ({reqData}) => {
+export const updateCartItem = (reqData) => {
     return async (dispatch) => {
         dispatch({type:UPDATE_CART_ITEM_REQUEST});
 
@@ -58,7 +58,7 @@ export const updateCartItem = ({reqData}) => {
             console.log("update cart item successful", data);
         }
         catch(error){
-            dispatch({type:UPDATE_CART_ITEM_FAILURE, payload:error});
+            dispatch({type:UPDATE_CART_ITEM_FAILURE, payload:error.message});
             console.log("error to update cart item", error);
         }
     }
