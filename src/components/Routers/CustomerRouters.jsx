@@ -6,6 +6,7 @@ import RestaurantDetails from '../Restaurant/RestaurantDetails'
 import Cart from '../Cart/Cart'
 import Profile from '../Profile/Profile'
 import { Auth } from '../Auth/Auth'
+import { PaymentSuccess } from '../PaymentSuccess/PaymentSuccess'
 
 export const CustomerRouters = () => {
   return (
@@ -17,6 +18,7 @@ export const CustomerRouters = () => {
             <Route path='/restaurant/:city/:title/:id' element={<RestaurantDetails/>}/>
             <Route path='/cart' element={<Cart/>}/>
             <Route path='/my-profile/*' element={<Profile/>}/>
+            <Route path='/payment/success/:id' element={<PaymentSuccess/>}/>
 
         </Routes>
         <Auth/>
